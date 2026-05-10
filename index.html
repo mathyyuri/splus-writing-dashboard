@@ -3,139 +3,145 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>S+ Writing Dashboard</title>
+<title>S+ Writing Ranking</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#eef5eb; --card:#fbfdf9; --line:#dce8d7;
-  --main:#223223; --sub:#758171; --point:#7da57d;
-  --high-bg:#dff0dd; --high:#5e835d;
-  --mid-bg:#edf4dd; --mid:#7d8f52;
-  --low-bg:#f1ece8; --low:#9b8d83;
+  --bg:#edf5ea; --card:#f9fdf7; --line:#d9e7d5;
+  --main:#233222; --sub:#6f7d6c; --point:#7da27b;
+  --gold:#d4af37; --silver:#a8a8a8; --bronze:#cd7f32;
 }
 *{ margin:0; padding:0; box-sizing:border-box; }
 body{ background:var(--bg); font-family:'Noto Sans KR', sans-serif; color:var(--main); padding:42px 20px 80px; }
-.container{ max-width:1380px; margin:auto; }
-.header{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:34px; gap:20px; flex-wrap:wrap; }
-.logo{ font-family:'Cormorant Garamond', serif; font-size:68px; line-height:0.92; font-weight:600; }
+.container{ max-width:1000px; margin:auto; }
+
+/* HEADER */
+.header{ text-align:center; margin-bottom:50px; }
+.logo{ font-family:'Cormorant Garamond', serif; font-size:60px; line-height:1; font-weight:600; margin-bottom:10px; }
 .logo span{ color:var(--point); font-style:italic; }
-.sub{ margin-top:14px; color:var(--sub); font-size:13px; letter-spacing:0.18em; }
-.live{ background:var(--card); border:1px solid var(--line); border-radius:18px; padding:16px 20px; font-size:13px; color:var(--sub); line-height:1.7; }
-.live strong{ color:var(--main); }
-.summary{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-bottom:26px; }
-.summary-card{ background:var(--card); border:1px solid var(--line); border-radius:28px; padding:26px; box-shadow:0 8px 22px rgba(50,80,50,0.04); }
-.summary-title{ font-size:13px; color:var(--sub); margin-bottom:12px; letter-spacing:0.08em; }
-.summary-value{ font-size:38px; font-weight:700; }
-.table-card{ background:var(--card); border:1px solid var(--line); border-radius:34px; padding:30px; overflow-x:auto; box-shadow:0 10px 28px rgba(50,80,50,0.05); }
-table{ width:100%; min-width:1150px; border-collapse:collapse; }
-th{ background:#f1f7ef; padding:18px 14px; font-size:13px; border-bottom:1px solid var(--line); color:var(--main); }
-td{ padding:18px 14px; text-align:center; border-bottom:1px solid #e8efe4; font-size:14px; }
-tr:hover{ background:#fbfef9; }
-.badge{ display:inline-flex; align-items:center; justify-content:center; min-width:78px; padding:8px 14px; border-radius:999px; font-weight:700; font-size:13px; }
-.high{ background:var(--high-bg); color:var(--high); }
-.mid{ background:var(--mid-bg); color:var(--mid); }
-.low{ background:var(--low-bg); color:var(--low); }
-.bar-wrap{ width:100%; height:11px; background:#e8f0e5; border-radius:999px; overflow:hidden; }
-.bar{ height:100%; border-radius:999px; background:linear-gradient(to right, #9bbd97, #739872); }
-.unit{ font-weight:600; color:#4e654d; }
-.footer{ text-align:center; margin-top:48px; color:var(--sub); font-size:13px; line-height:1.9; }
-@media(max-width:900px){ .summary{ grid-template-columns:1fr; } .logo{ font-size:50px; } }
+.sub{ color:var(--sub); font-size:13px; letter-spacing:0.2em; font-weight:500; }
+
+/* TOP 3 RANKING BOX */
+.top-ranking { display: flex; justify-content: center; align-items: flex-end; gap: 15px; margin-bottom: 40px; padding: 20px; }
+.rank-card { background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: 25px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: relative; transition: 0.3s; }
+.rank-card:hover { transform: translateY(-5px); }
+
+/* 순위별 높이 및 강조 */
+.rank-1 { order: 2; width: 35%; height: 220px; border: 2px solid var(--gold); }
+.rank-2 { order: 1; width: 30%; height: 180px; }
+.rank-3 { order: 3; width: 30%; height: 160px; }
+
+.medal { font-size: 30px; margin-bottom: 10px; display: block; }
+.rank-name { font-size: 20px; font-weight: 700; margin-bottom: 5px; }
+.rank-class { font-size: 12px; color: var(--sub); margin-bottom: 10px; }
+.rank-score { font-size: 28px; font-weight: 800; color: var(--point); }
+.rank-score span { font-size: 14px; font-weight: 400; margin-left: 2px; }
+
+/* TABLE */
+.table-card { background: var(--card); border: 1px solid var(--line); border-radius: 30px; padding: 20px; box-shadow: 0 10px 28px rgba(0,0,0,0.03); }
+table { width: 100%; border-collapse: collapse; }
+th { padding: 15px; font-size: 13px; color: var(--sub); border-bottom: 2px solid var(--line); text-align: center; }
+td { padding: 18px 15px; text-align: center; border-bottom: 1px solid #f0f4ef; font-size: 15px; }
+.row-rank { font-weight: 700; color: var(--sub); width: 60px; }
+.row-name { font-weight: 700; font-size: 16px; }
+.row-score { font-weight: 700; color: var(--point); }
+
+.footer { text-align: center; margin-top: 50px; color: var(--sub); font-size: 12px; opacity: 0.8; }
+
+@media(max-width:600px){
+  .top-ranking { flex-direction: column; align-items: center; }
+  .rank-card { width: 100% !important; height: auto !important; order: unset !important; }
+}
 </style>
 </head>
 <body>
+
 <div class="container">
   <div class="header">
-    <div>
-      <div class="logo">S+ Writing<br><span>Dashboard</span></div>
-      <div class="sub">MATHY YURI · DAECHI S+ ACADEMY</div>
-    </div>
-    <div class="live">LIVE WRITING TRACKING<br><strong>Completion · Mastery · Growth</strong></div>
+    <div class="logo">S+ Writing<br><span>Ranking</span></div>
+    <div class="sub">MATHY YURI · PREMIUM ACCUMULATED SCORE</div>
   </div>
-  <div class="summary">
-    <div class="summary-card">
-      <div class="summary-title">TOTAL SUBMISSIONS (S/S+)</div>
-      <div class="summary-value" id="submitCount">-</div>
+
+  <div id="topSection" class="top-ranking">
     </div>
-    <div class="summary-card">
-      <div class="summary-title">AVERAGE COMPLETION</div>
-      <div class="summary-value" id="avgCompletion">-</div>
-    </div>
-    <div class="summary-card">
-      <div class="summary-title">MASTER LEVEL</div>
-      <div class="summary-value" id="masterCount">-</div>
-    </div>
-  </div>
+
   <div class="table-card">
     <table>
       <thead>
         <tr>
-          <th>이름</th><th>반</th><th>단원</th><th>점수</th><th>완성도</th><th>성장 BAR</th><th>상태</th><th>기록일</th>
+          <th>RANK</th>
+          <th>이름</th>
+          <th>반</th>
+          <th>누적 총점</th>
         </tr>
       </thead>
-      <tbody id="tbody"></tbody>
+      <tbody id="tbody">
+        </tbody>
     </table>
   </div>
-  <div class="footer">Premium Writing Completion Platform<br>Powered by MATHY YURI</div>
+
+  <div class="footer">
+    DAECHI S+ ACADEMY · Individualized Logic Mastery System
+  </div>
 </div>
 
 <script>
-/* 원장님 전용 API URL */
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzlCHDzIVbeZld0A2E10eoQGzYZjzBjIYTDLJZlo2DOMZAPvXOvMdHYqYbXvKYf5qNuwA/exec';
-
-const maxScores = { "01_방정식":40, "02_부등식":38, "03_경우의수":50, "04_행렬":42, "05_실전FINAL":60 };
 
 fetch(SHEET_URL)
 .then(res => res.json())
 .then(data => {
-  const tbody = document.getElementById('tbody');
-  tbody.innerHTML = ''; 
+  // 1. 이름별 누적 점수 계산
+  const studentMap = {};
 
-  let totalComp = 0; let mCount = 0; let sCount = 0;
+  data.forEach(row => {
+    const name = String(row["이름"] || "").trim();
+    const sClass = String(row["반"] || "").trim();
+    const score = Number(row["점수"] || 0);
 
-  // 최신 데이터가 위로 오도록 정렬
-  data.reverse().forEach(row => {
-    const rawClass = String(row["반"] || "").trim().toUpperCase();
-    
-    // 필터링: 'S' 또는 'S+' 글자가 포함된 경우만 출력 (예: S반, S+반, s반 등 모두 포함)
-    if(rawClass.includes("S")) {
-      sCount++;
-      const max = maxScores[row["단원"]] || 40;
-      const score = Number(row["점수"] || 0);
-      const completion = Math.round((score / max) * 100);
-      totalComp += completion;
+    if(!name) return;
 
-      let sClass = "low"; let status = "RETRY";
-      if(completion >= 95){ sClass = "high"; status = "MASTER"; mCount++; }
-      else if(completion >= 80){ sClass = "mid"; status = "ADVANCED"; }
-
-      // 날짜 포맷 (오후/오전 앞까지만 표시)
-      const rawDate = String(row["날짜"] || "");
-      const date = rawDate.split("오")[0].trim();
-
-      tbody.innerHTML += `
-      <tr>
-        <td><strong>${row["이름"]}</strong></td>
-        <td>${row["반"]}</td>
-        <td class="unit">${row["단원"]}</td>
-        <td>${score}</td>
-        <td><span class="badge ${sClass}">${completion}%</span></td>
-        <td><div class="bar-wrap"><div class="bar" style="width:${completion}%"></div></div></td>
-        <td><span class="badge ${sClass}">${status}</span></td>
-        <td>${date}</td>
-      </tr>`;
+    if(!studentMap[name]) {
+      studentMap[name] = { name: name, class: sClass, totalScore: 0 };
     }
+    studentMap[name].totalScore += score;
   });
 
-  document.getElementById('submitCount').innerText = sCount;
-  document.getElementById('avgCompletion').innerText = (sCount > 0 ? Math.round(totalComp / sCount) : 0) + '%';
-  document.getElementById('masterCount').innerText = mCount;
+  // 2. 객체를 배열로 변환 후 점수순 정렬
+  const rankingArray = Object.values(studentMap).sort((a, b) => b.totalScore - a.totalScore);
+
+  // 3. TOP 3 렌더링
+  const topSection = document.getElementById('topSection');
+  const medals = ["🥇", "🥈", "🥉"];
+  const top3Html = rankingArray.slice(0, 3).map((student, idx) => `
+    <div class="rank-card rank-${idx + 1}">
+      <span class="medal">${medals[idx]}</span>
+      <div class="rank-name">${student.name}</div>
+      <div class="rank-class">${student.class}</div>
+      <div class="rank-score">${student.totalScore}<span>pts</span></div>
+    </div>
+  `).join('');
+  topSection.innerHTML = top3Html;
+
+  // 4. 전체 리스트 렌더링
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = rankingArray.map((student, idx) => `
+    <tr>
+      <td class="row-rank">${idx + 1}</td>
+      <td class="row-name">${student.name}</td>
+      <td>${student.class}</td>
+      <td class="row-score">${student.totalScore}</td>
+    </tr>
+  `).join('');
+
 })
 .catch(err => {
   console.error(err);
-  document.getElementById('tbody').innerHTML = '<tr><td colspan="8" style="color:red; padding:40px;">데이터 로드 오류: 시트 헤더 명칭과 API 배포 상태를 확인해주세요.</td></tr>';
+  document.getElementById('tbody').innerHTML = '<tr><td colspan="4" style="padding:40px; color:red;">데이터 로드 중 오류가 발생했습니다.</td></tr>';
 });
 </script>
+
 </body>
 </html>
