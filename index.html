@@ -3,223 +3,56 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
 <title>S+ Writing Dashboard</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
-
 <style>
 :root{
-  --bg:#eef5eb;
-  --card:#fbfdf9;
-  --line:#dce8d7;
-  --main:#223223;
-  --sub:#758171;
-  --point:#7da57d;
-  --high-bg:#dff0dd;
-  --high:#5e835d;
-  --mid-bg:#edf4dd;
-  --mid:#7d8f52;
-  --low-bg:#f1ece8;
-  --low:#9b8d83;
+  --bg:#eef5eb; --card:#fbfdf9; --line:#dce8d7;
+  --main:#223223; --sub:#758171; --point:#7da57d;
+  --high-bg:#dff0dd; --high:#5e835d;
+  --mid-bg:#edf4dd; --mid:#7d8f52;
+  --low-bg:#f1ece8; --low:#9b8d83;
 }
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-body{
-  background:var(--bg);
-  font-family:'Noto Sans KR', sans-serif;
-  color:var(--main);
-  padding:42px 20px 80px;
-}
-
-.container{
-  max-width:1380px;
-  margin:auto;
-}
-
-/* HEADER */
-.header{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  margin-bottom:34px;
-  gap:20px;
-  flex-wrap:wrap;
-}
-
-.logo{
-  font-family:'Cormorant Garamond', serif;
-  font-size:68px;
-  line-height:0.92;
-  font-weight:600;
-}
-
-.logo span{
-  color:var(--point);
-  font-style:italic;
-}
-
-.sub{
-  margin-top:14px;
-  color:var(--sub);
-  font-size:13px;
-  letter-spacing:0.18em;
-}
-
-.live{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:16px 20px;
-  font-size:13px;
-  color:var(--sub);
-  line-height:1.7;
-}
-
-.live strong{
-  color:var(--main);
-}
-
-/* SUMMARY */
-.summary{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-  margin-bottom:26px;
-}
-
-.summary-card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:28px;
-  padding:26px;
-  box-shadow:0 8px 22px rgba(50,80,50,0.04);
-}
-
-.summary-title{
-  font-size:13px;
-  color:var(--sub);
-  margin-bottom:12px;
-  letter-spacing:0.08em;
-}
-
-.summary-value{
-  font-size:38px;
-  font-weight:700;
-}
-
-/* TABLE CARD */
-.table-card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:34px;
-  padding:30px;
-  overflow-x:auto;
-  box-shadow:0 10px 28px rgba(50,80,50,0.05);
-}
-
-table{
-  width:100%;
-  min-width:1150px;
-  border-collapse:collapse;
-}
-
-th{
-  background:#f1f7ef;
-  padding:18px 14px;
-  font-size:13px;
-  border-bottom:1px solid var(--line);
-  color:var(--main);
-}
-
-td{
-  padding:18px 14px;
-  text-align:center;
-  border-bottom:1px solid #e8efe4;
-  font-size:14px;
-}
-
-tr:hover{
-  background:#fbfef9;
-}
-
-/* BADGE */
-.badge{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-width:78px;
-  padding:8px 14px;
-  border-radius:999px;
-  font-weight:700;
-  font-size:13px;
-}
-
+*{ margin:0; padding:0; box-sizing:border-box; }
+body{ background:var(--bg); font-family:'Noto Sans KR', sans-serif; color:var(--main); padding:42px 20px 80px; }
+.container{ max-width:1380px; margin:auto; }
+.header{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:34px; gap:20px; flex-wrap:wrap; }
+.logo{ font-family:'Cormorant Garamond', serif; font-size:68px; line-height:0.92; font-weight:600; }
+.logo span{ color:var(--point); font-style:italic; }
+.sub{ margin-top:14px; color:var(--sub); font-size:13px; letter-spacing:0.18em; }
+.live{ background:var(--card); border:1px solid var(--line); border-radius:18px; padding:16px 20px; font-size:13px; color:var(--sub); line-height:1.7; }
+.live strong{ color:var(--main); }
+.summary{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-bottom:26px; }
+.summary-card{ background:var(--card); border:1px solid var(--line); border-radius:28px; padding:26px; box-shadow:0 8px 22px rgba(50,80,50,0.04); }
+.summary-title{ font-size:13px; color:var(--sub); margin-bottom:12px; letter-spacing:0.08em; }
+.summary-value{ font-size:38px; font-weight:700; }
+.table-card{ background:var(--card); border:1px solid var(--line); border-radius:34px; padding:30px; overflow-x:auto; box-shadow:0 10px 28px rgba(50,80,50,0.05); }
+table{ width:100%; min-width:1150px; border-collapse:collapse; }
+th{ background:#f1f7ef; padding:18px 14px; font-size:13px; border-bottom:1px solid var(--line); color:var(--main); }
+td{ padding:18px 14px; text-align:center; border-bottom:1px solid #e8efe4; font-size:14px; }
+tr:hover{ background:#fbfef9; }
+.badge{ display:inline-flex; align-items:center; justify-content:center; min-width:78px; padding:8px 14px; border-radius:999px; font-weight:700; font-size:13px; }
 .high{ background:var(--high-bg); color:var(--high); }
 .mid{ background:var(--mid-bg); color:var(--mid); }
 .low{ background:var(--low-bg); color:var(--low); }
-
-/* BAR */
-.bar-wrap{
-  width:100%;
-  height:11px;
-  background:#e8f0e5;
-  border-radius:999px;
-  overflow:hidden;
-}
-
-.bar{
-  height:100%;
-  border-radius:999px;
-  background:linear-gradient(to right, #9bbd97, #739872);
-}
-
-/* UNIT */
+.bar-wrap{ width:100%; height:11px; background:#e8f0e5; border-radius:999px; overflow:hidden; }
+.bar{ height:100%; border-radius:999px; background:linear-gradient(to right, #9bbd97, #739872); }
 .unit{ font-weight:600; color:#4e654d; }
-
-/* FOOTER */
-.footer{
-  text-align:center;
-  margin-top:48px;
-  color:var(--sub);
-  font-size:13px;
-  line-height:1.9;
-}
-
-@media(max-width:900px){
-  .summary{ grid-template-columns:1fr; }
-  .logo{ font-size:50px; }
-}
+.footer{ text-align:center; margin-top:48px; color:var(--sub); font-size:13px; line-height:1.9; }
+@media(max-width:900px){ .summary{ grid-template-columns:1fr; } .logo{ font-size:50px; } }
 </style>
 </head>
-
 <body>
-
 <div class="container">
   <div class="header">
     <div>
-      <div class="logo">
-        S+ Writing<br>
-        <span>Dashboard</span>
-      </div>
-      <div class="sub">
-        MATHY YURI · DAECHI S+ ACADEMY
-      </div>
+      <div class="logo">S+ Writing<br><span>Dashboard</span></div>
+      <div class="sub">MATHY YURI · DAECHI S+ ACADEMY</div>
     </div>
-    <div class="live">
-      LIVE WRITING TRACKING<br>
-      <strong>Completion · Mastery · Growth</strong>
-    </div>
+    <div class="live">LIVE WRITING TRACKING<br><strong>Completion · Mastery · Growth</strong></div>
   </div>
-
   <div class="summary">
     <div class="summary-card">
       <div class="summary-title">TOTAL SUBMISSIONS (S/S+)</div>
@@ -234,82 +67,52 @@ tr:hover{
       <div class="summary-value" id="masterCount">-</div>
     </div>
   </div>
-
   <div class="table-card">
     <table>
       <thead>
         <tr>
-          <th>이름</th>
-          <th>반</th>
-          <th>단원</th>
-          <th>점수</th>
-          <th>완성도</th>
-          <th>성장 BAR</th>
-          <th>상태</th>
-          <th>기록일</th>
+          <th>이름</th><th>반</th><th>단원</th><th>점수</th><th>완성도</th><th>성장 BAR</th><th>상태</th><th>기록일</th>
         </tr>
       </thead>
       <tbody id="tbody"></tbody>
     </table>
   </div>
-
-  <div class="footer">
-    Premium Writing Completion Platform<br>
-    Powered by MATHY YURI
-  </div>
+  <div class="footer">Premium Writing Completion Platform<br>Powered by MATHY YURI</div>
 </div>
 
 <script>
-/* APPS SCRIPT URL - 수정된 최신 주소 */
+/* 원장님 전용 API URL */
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzlCHDzIVbeZld0A2E10eoQGzYZjzBjIYTDLJZlo2DOMZAPvXOvMdHYqYbXvKYf5qNuwA/exec';
 
-const maxScores = {
-  "01_방정식":40,
-  "02_부등식":38,
-  "03_경우의수":50,
-  "04_행렬":42,
-  "05_실전FINAL":60
-};
+const maxScores = { "01_방정식":40, "02_부등식":38, "03_경우의수":50, "04_행렬":42, "05_실전FINAL":60 };
 
 fetch(SHEET_URL)
 .then(res => res.json())
 .then(data => {
   const tbody = document.getElementById('tbody');
-  tbody.innerHTML = ''; // 초기화
+  tbody.innerHTML = ''; 
 
-  let totalCompletion = 0;
-  let masterCount = 0;
-  let sClassStudentCount = 0;
+  let totalComp = 0; let mCount = 0; let sCount = 0;
 
-  // 최신순으로 정렬 (데이터가 뒤집혀 있을 경우 대비)
+  // 최신 데이터가 위로 오도록 정렬
   data.reverse().forEach(row => {
-    // 반 필터링 로직: S 또는 S+ 인 경우만 (대소문자 무관)
-    const rawClassName = String(row["반"] || "").trim().toUpperCase();
+    const rawClass = String(row["반"] || "").trim().toUpperCase();
     
-    if(rawClassName === "S" || rawClassName === "S+") {
-      sClassStudentCount++;
-
+    // 필터링: 'S' 또는 'S+' 글자가 포함된 경우만 출력 (예: S반, S+반, s반 등 모두 포함)
+    if(rawClass.includes("S")) {
+      sCount++;
       const max = maxScores[row["단원"]] || 40;
       const score = Number(row["점수"] || 0);
       const completion = Math.round((score / max) * 100);
-      totalCompletion += completion;
+      totalComp += completion;
 
-      let scoreClass = "low";
-      let status = "RETRY";
+      let sClass = "low"; let status = "RETRY";
+      if(completion >= 95){ sClass = "high"; status = "MASTER"; mCount++; }
+      else if(completion >= 80){ sClass = "mid"; status = "ADVANCED"; }
 
-      if(completion >= 95){
-        scoreClass = "high";
-        status = "MASTER";
-        masterCount++;
-      }
-      else if(completion >= 80){
-        scoreClass = "mid";
-        status = "ADVANCED";
-      }
-
-      // 날짜에서 시간 부분 제거
-      const fullDate = String(row["날짜"] || "");
-      const date = fullDate.includes("T") ? fullDate.split("T")[0] : fullDate.split(" ")[0];
+      // 날짜 포맷 (오후/오전 앞까지만 표시)
+      const rawDate = String(row["날짜"] || "");
+      const date = rawDate.split("오")[0].trim();
 
       tbody.innerHTML += `
       <tr>
@@ -317,36 +120,22 @@ fetch(SHEET_URL)
         <td>${row["반"]}</td>
         <td class="unit">${row["단원"]}</td>
         <td>${score}</td>
-        <td><span class="badge ${scoreClass}">${completion}%</span></td>
-        <td>
-          <div class="bar-wrap">
-            <div class="bar" style="width:${completion}%"></div>
-          </div>
-        </td>
-        <td><span class="badge ${scoreClass}">${status}</span></td>
+        <td><span class="badge ${sClass}">${completion}%</span></td>
+        <td><div class="bar-wrap"><div class="bar" style="width:${completion}%"></div></div></td>
+        <td><span class="badge ${sClass}">${status}</span></td>
         <td>${date}</td>
-      </tr>
-      `;
+      </tr>`;
     }
   });
 
-  /* 상단 요약 업데이트 (필터링된 인원 기준) */
-  if (sClassStudentCount > 0) {
-    const avg = Math.round(totalCompletion / sClassStudentCount);
-    document.getElementById('submitCount').innerText = sClassStudentCount;
-    document.getElementById('avgCompletion').innerText = avg + '%';
-    document.getElementById('masterCount').innerText = masterCount;
-  } else {
-    document.getElementById('submitCount').innerText = '0';
-    document.getElementById('avgCompletion').innerText = '0%';
-    document.getElementById('masterCount').innerText = '0';
-  }
+  document.getElementById('submitCount').innerText = sCount;
+  document.getElementById('avgCompletion').innerText = (sCount > 0 ? Math.round(totalComp / sCount) : 0) + '%';
+  document.getElementById('masterCount').innerText = mCount;
 })
-.catch(error => {
-  console.error(error);
-  // alert('데이터 연결 오류가 발생했습니다.');
+.catch(err => {
+  console.error(err);
+  document.getElementById('tbody').innerHTML = '<tr><td colspan="8" style="color:red; padding:40px;">데이터 로드 오류: 시트 헤더 명칭과 API 배포 상태를 확인해주세요.</td></tr>';
 });
 </script>
-
 </body>
 </html>
