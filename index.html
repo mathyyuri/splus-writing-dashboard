@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>S+ Writing Dashboard</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+
+  --bg:#edf5ea;
+  --card:#f9fdf7;
+  --line:#dbe8d6;
+
+  --main:#243324;
+  --sub:#73806f;
+
+  --point:#7ca27b;
+
+  --high-bg:#dff1dc;
+  --high:#5d825c;
+
+  --mid-bg:#eef5dc;
+  --mid:#7d8c50;
+
+  --low-bg:#f2ece7;
+  --low:#998b80;
+
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+
+  background:var(--bg);
+  font-family:'Noto Sans KR', sans-serif;
+  color:var(--main);
+
+  padding:40px 20px 80px;
+
+}
+
+.container{
+
+  max-width:1280px;
+  margin:auto;
+
+}
+
+/* HEADER */
+
+.header{
+
+  margin-bottom:36px;
+
+}
+
+.logo{
+
+  font-family:'Cormorant Garamond', serif;
+  font-size:64px;
+  line-height:0.95;
+  font-weight:600;
+
+}
+
+.logo span{
+  color:var(--point);
+  font-style:italic;
+}
+
+.sub{
+
+  margin-top:14px;
+  color:var(--sub);
+  font-size:13px;
+  letter-spacing:0.18em;
+
+}
+
+/* SUMMARY */
+
+.summary{
+
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+
+  margin-bottom:28px;
+
+}
+
+.summary-card{
+
+  background:var(--card);
+
+  border:1px solid var(--line);
+
+  border-radius:24px;
+
+  padding:24px;
+
+}
+
+.summary-title{
+
+  font-size:13px;
+  color:var(--sub);
+  margin-bottom:12px;
+
+}
+
+.summary-value{
+
+  font-size:34px;
+  font-weight:700;
+
+}
+
+/* TABLE */
+
+.table-card{
+
+  background:var(--card);
+
+  border:1px solid var(--line);
+
+  border-radius:30px;
+
+  padding:30px;
+
+  overflow-x:auto;
+
+}
+
+table{
+
+  width:100%;
+  border-collapse:collapse;
+
+  min-width:900px;
+
+}
+
+th{
+
+  background:#f2f8ef;
+
+  padding:16px;
+
+  font-size:14px;
+
+  border-bottom:1px solid var(--line);
+
+}
+
+td{
+
+  padding:16px;
+
+  text-align:center;
+
+  border-bottom:1px solid #e7efe3;
+
+  font-size:14px;
+
+}
+
+tr:hover{
+
+  background:#fbfef9;
+
+}
+
+/* SCORE */
+
+.score{
+
+  display:inline-block;
+
+  padding:8px 12px;
+
+  border-radius:999px;
+
+  font-weight:700;
+
+  min-width:72px;
+
+}
+
+.high{
+
+  background:var(--high-bg);
+  color:var(--high);
+
+}
+
+.mid{
+
+  background:var(--mid-bg);
+  color:var(--mid);
+
+}
+
+.low{
+
+  background:var(--low-bg);
+  color:var(--low);
+
+}
+
+/* BAR */
+
+.bar-wrap{
+
+  width:100%;
+  height:10px;
+
+  background:#edf3ea;
+
+  border-radius:999px;
+
+  overflow:hidden;
+
+}
+
+.bar{
+
+  height:100%;
+
+  background:linear-gradient(
+    to right,
+    #95b992,
+    #6f976e
+  );
+
+}
+
+/* FOOTER */
+
+.footer{
+
+  margin-top:50px;
+
+  text-align:center;
+
+  color:var(--sub);
+
+  font-size:13px;
+
+  line-height:1.8;
+
+}
+
+@media(max-width:768px){
+
+  .summary{
+    grid-template-columns:1fr;
+  }
+
+  .logo{
+    font-size:48px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+
+  <div class="header">
+
+    <div class="logo">
+      S+ Writing<br>
+      <span>Dashboard</span>
+    </div>
+
+    <div class="sub">
+      MATHY YURI · DAECHI S+ ACADEMY
+    </div>
+
+  </div>
+
+  <!-- SUMMARY -->
+
+  <div class="summary">
+
+    <div class="summary-card">
+
+      <div class="summary-title">
+        TODAY SUBMISSION
+      </div>
+
+      <div class="summary-value" id="submitCount">
+        -
+      </div>
+
+    </div>
+
+    <div class="summary-card">
+
+      <div class="summary-title">
+        AVERAGE COMPLETION
+      </div>
+
+      <div class="summary-value" id="avgCompletion">
+        -
+      </div>
+
+    </div>
+
+    <div class="summary-card">
+
+      <div class="summary-title">
+        MASTER STUDENTS
+      </div>
+
+      <div class="summary-value" id="masterCount">
+        -
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- TABLE -->
+
+  <div class="table-card">
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>이름</th>
+          <th>반</th>
+          <th>단원</th>
+          <th>점수</th>
+          <th>완성도</th>
+          <th>성장 BAR</th>
+          <th>날짜</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody id="tbody">
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <!-- FOOTER -->
+
+  <div class="footer">
+
+    Premium Writing Completion System<br>
+    Powered by MATHY YURI
+
+  </div>
+
+</div>
+
+<script>
+
+/* APPS SCRIPT URL */
+
+const SHEET_URL =
+'https://script.google.com/macros/s/AKfycbzoleT3gg2gdtE2XK-EdruzwSMcdKSqwWepsCDoBCjbtfUcOBB3CR6Z7XFgSEZGga5ibg/exec';
+
+/* 단원별 만점 */
+
+const maxScores = {
+
+  "01_방정식":40,
+  "02_부등식":38,
+  "03_경우의수":50,
+  "04_행렬":42
+
+};
+
+fetch(SHEET_URL)
+
+.then(res => res.json())
+
+.then(data => {
+
+  const tbody = document.getElementById('tbody');
+
+  let totalCompletion = 0;
+  let masterCount = 0;
+
+  data.reverse().forEach(row => {
+
+    const max = maxScores[row["단원"]] || 40;
+
+    const completion =
+      Math.round((Number(row["점수"]) / max) * 100);
+
+    totalCompletion += completion;
+
+    if(completion >= 95){
+      masterCount++;
+    }
+
+    let scoreClass = "low";
+
+    if(completion >= 90){
+      scoreClass = "high";
+    }
+    else if(completion >= 80){
+      scoreClass = "mid";
+    }
+
+    tbody.innerHTML += `
+
+    <tr>
+
+      <td>${row["이름"]}</td>
+
+      <td>${row["반"]}</td>
+
+      <td>${row["단원"]}</td>
+
+      <td>${row["점수"]}</td>
+
+      <td>
+        <span class="score ${scoreClass}">
+          ${completion}%
+        </span>
+      </td>
+
+      <td>
+
+        <div class="bar-wrap">
+
+          <div class="bar"
+          style="width:${completion}%">
+
+          </div>
+
+        </div>
+
+      </td>
+
+      <td>${row["날짜"]}</td>
+
+    </tr>
+
+    `;
+
+  });
+
+  /* SUMMARY */
+
+  const avg =
+    Math.round(totalCompletion / data.length);
+
+  document.getElementById('submitCount')
+    .innerText = data.length;
+
+  document.getElementById('avgCompletion')
+    .innerText = avg + '%';
+
+  document.getElementById('masterCount')
+    .innerText = masterCount;
+
+})
+
+.catch(err => {
+
+  console.log(err);
+
+});
+
+</script>
+
+</body>
+</html>
